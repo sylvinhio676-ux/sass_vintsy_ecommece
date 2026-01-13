@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Order;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,10 @@ class DisputeFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'order_id' => Order::factory(),
+            'status' => $this->faker->randomElement(['open', 'resolved', 'rejected']),
+            'reason' => $this->faker->sentence(12),
+            'created_at' => $this->faker->dateTimeBetween('-2 months', 'now'),
         ];
     }
 }

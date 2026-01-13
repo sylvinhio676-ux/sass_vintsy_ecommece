@@ -2,16 +2,28 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\Shop;
 use Illuminate\Database\Seeder;
 
 class ProductSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        //
+        if (Product::count() > 0) {
+            return;
+        }
+
+        $shops = Shop::all();
+        $categories = Category::all();
+
+        foreach ($shops as $shop) {
+            Product::factory(6)->create([
+                'shop_id' => $shop->id,
+                'category_id' => $categories->random()->id,
+                'status' => 'published',
+            ]);
+        }
     }
 }

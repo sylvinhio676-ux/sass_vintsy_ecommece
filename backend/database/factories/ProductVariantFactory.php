@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,11 @@ class ProductVariantFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'product_id' => Product::factory(),
+            'title' => $this->faker->optional()->word(),
+            'price' => $this->faker->randomFloat(2, 8, 250),
+            'stock' => $this->faker->numberBetween(0, 50),
+            'sku' => strtoupper($this->faker->bothify('VAR-#####')),
         ];
     }
 }

@@ -9,4 +9,19 @@ class ProductImage extends Model
 {
     /** @use HasFactory<\Database\Factories\ProductImageFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'product_id',
+        'url',
+        'position',
+    ];
+
+    protected $casts = [
+        'position' => 'integer',
+    ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

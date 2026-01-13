@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,13 @@ class ShopFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'owner_id' => User::factory(),
+            'name' => $this->faker->company(),
+            'slug' => $this->faker->unique()->slug(3),
+            'description' => $this->faker->sentence(12),
+            'logo_url' => $this->faker->imageUrl(120, 120, 'business', true),
+            'banner_url' => $this->faker->imageUrl(1200, 400, 'fashion', true),
+            'policies' => $this->faker->paragraph(3),
         ];
     }
 }

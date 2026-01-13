@@ -9,4 +9,17 @@ class Page extends Model
 {
     /** @use HasFactory<\Database\Factories\PageFactory> */
     use HasFactory;
+
+    public $timestamps = false;
+
+    protected $fillable = [
+        'title',
+        'slug',
+        'content',
+        'updated_at',
+    ];
+
+    protected $casts = [
+        'updated_at' => 'datetime',
+    ];
 }

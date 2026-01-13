@@ -2,16 +2,17 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Attribute;
 use Illuminate\Database\Seeder;
 
 class AttributeSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        //
+        $attributes = ['Color', 'Size', 'Material', 'Condition'];
+
+        foreach ($attributes as $name) {
+            Attribute::firstOrCreate(['name' => $name]);
+        }
     }
 }

@@ -2,16 +2,26 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\OrderItem;
+use App\Models\Review;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class ReviewSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        //
+        if (Review::count() > 0) {
+            return;
+        }
+
+        $customers = User::role('customer')->get();
+
+        foreach (OrderItem::all() as $item) {
+            Review::factory()->create([
+                'product_id' => $item->product_id,
+                'user_id' => $customers->random()->id,
+            ]);
+        }
     }
 }

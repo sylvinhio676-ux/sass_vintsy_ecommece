@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class StoreSellerPublishedListingPhotoRequest extends FormRequest
+{
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    public function rules(): array
+    {
+        return [
+            'published_listing_id' => 'required|exists:seller_published_listings,id',
+            'url' => 'required|string|max:500',
+            'position' => 'nullable|integer|min:0',
+        ];
+    }
+}

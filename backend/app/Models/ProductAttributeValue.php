@@ -9,4 +9,19 @@ class ProductAttributeValue extends Model
 {
     /** @use HasFactory<\Database\Factories\ProductAttributeValueFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'product_id',
+        'attribute_value_id',
+    ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+    public function attributeValue()
+    {
+        return $this->belongsTo(AttributeValue::class);
+    }
 }

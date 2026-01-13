@@ -17,7 +17,9 @@ class CategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'parent_id' => null,
+            'name' => $this->faker->unique()->words(2, true),
+            'slug' => $this->faker->unique()->slug(2),
         ];
     }
 }

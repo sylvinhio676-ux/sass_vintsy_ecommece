@@ -9,4 +9,13 @@ class Attribute extends Model
 {
     /** @use HasFactory<\Database\Factories\AttributeFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+    ];
+
+    public function values()
+    {
+        return $this->hasMany(AttributeValue::class);
+    }
 }

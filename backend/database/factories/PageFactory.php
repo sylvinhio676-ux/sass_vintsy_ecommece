@@ -17,7 +17,10 @@ class PageFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'title' => $this->faker->sentence(4),
+            'slug' => $this->faker->unique()->slug(3),
+            'content' => $this->faker->paragraphs(4, true),
+            'updated_at' => $this->faker->dateTimeBetween('-2 months', 'now'),
         ];
     }
 }

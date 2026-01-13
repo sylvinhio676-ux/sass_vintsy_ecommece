@@ -2,16 +2,24 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Database\Seeder;
 
 class ProductImageSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        //
+        if (ProductImage::count() > 0) {
+            return;
+        }
+
+        $products = Product::all();
+
+        foreach ($products as $product) {
+            ProductImage::factory(2)->create([
+                'product_id' => $product->id,
+            ]);
+        }
     }
 }
